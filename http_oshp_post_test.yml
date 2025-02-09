@@ -1,0 +1,191 @@
+name: HTTP testsuite
+vars:
+  input: "this my input"
+
+testcases:
+- name: post http testcase
+  steps:
+  - type: http
+    method: POST
+    url: https://eu.api.ovh.com/1.0/auth/logout
+    assertions:
+    - result.statuscode ShouldEqual 401
+    - result.headers.X-Ovh-Queryid ShouldNotBeEmpty
+    - result.timeseconds ShouldBeLessThan 5
+
+- name: OSHP - HSTS post http testcase
+  steps:
+  - type: http
+    method: POST
+    url: https://eu.api.ovh.com/1.0/auth/logout
+    assertions:
+    - result.statuscode ShouldEqual 401
+    - result.headers.X-Ovh-Queryid ShouldNotBeEmpty
+    - result.timeseconds ShouldBeLessThan 5
+    - result.headers.Strict-Transport-Security ShouldNotBeNil
+
+- name: OSHP - X-Frame post http testcase
+  steps:
+  - type: http
+    method: POST
+    url: https://eu.api.ovh.com/1.0/auth/logout
+    assertions:
+    - result.statuscode ShouldEqual 401
+    - result.headers.X-Ovh-Queryid ShouldNotBeEmpty
+    - result.timeseconds ShouldBeLessThan 5
+    - result.headers.X-Frame-Options ShouldNotBeNil
+
+- name: OSHP - Content-Security-Policy post http testcase
+  steps:
+  - type: http
+    method: POST
+    url: https://eu.api.ovh.com/1.0/auth/logout
+    assertions:
+    - result.statuscode ShouldEqual 401
+    - result.headers.X-Ovh-Queryid ShouldNotBeEmpty
+    - result.timeseconds ShouldBeLessThan 5
+    - result.headers.Content-Security-Policy ShouldNotBeNil
+    
+
+- name: OSHP - X-Content-Type-Options post http testcase
+  steps:
+  - type: http
+    method: POST
+    url: https://eu.api.ovh.com/1.0/auth/logout
+    assertions:
+    - result.statuscode ShouldEqual 401
+    - result.headers.X-Ovh-Queryid ShouldNotBeEmpty
+    - result.timeseconds ShouldBeLessThan 5
+    - result.headers.X-Content-Type-Options ShouldNotBeNil
+
+- name: OSHP - X-Permitted-Cross-Domain-Policies post http testcase
+  steps:
+  - type: http
+    method: POST
+    url: https://eu.api.ovh.com/1.0/auth/logout
+    assertions:
+    - result.statuscode ShouldEqual 401
+    - result.headers.X-Ovh-Queryid ShouldNotBeEmpty
+    - result.timeseconds ShouldBeLessThan 5
+    - result.headers.X-Permitted-Cross-Domain-Policies ShouldNotBeNil
+
+- name: OSHP - Referrer-Policy post http testcase
+  steps:
+  - type: http
+    method: POST
+    url: https://eu.api.ovh.com/1.0/auth/logout
+    assertions:
+    - result.statuscode ShouldEqual 401
+    - result.headers.X-Ovh-Queryid ShouldNotBeEmpty
+    - result.timeseconds ShouldBeLessThan 5
+    - result.headers.Referrer-Policy ShouldNotBeNil
+
+- name: OSHP - Clear-Site-Data post http testcase
+  steps:
+  - type: http
+    method: POST
+    url: https://eu.api.ovh.com/1.0/auth/logout
+    assertions:
+    - result.statuscode ShouldEqual 401
+    - result.headers.X-Ovh-Queryid ShouldNotBeEmpty
+    - result.timeseconds ShouldBeLessThan 5
+    - result.headers.Clear-Site-Data ShouldNotBeNil
+
+- name: OSHP - Cross-Origin-Embedder-Policy post http testcase
+  steps:
+  - type: http
+    method: POST
+    url: https://eu.api.ovh.com/1.0/auth/logout
+    assertions:
+    - result.statuscode ShouldEqual 401
+    - result.headers.X-Ovh-Queryid ShouldNotBeEmpty
+    - result.timeseconds ShouldBeLessThan 5
+    - result.headers.Cross-Origin-Embedder-Policy ShouldNotBeNil
+
+- name: OSHP - Cross-Origin-Opener-Policy post http testcase
+  steps:
+  - type: http
+    method: POST
+    url: https://eu.api.ovh.com/1.0/auth/logout
+    assertions:
+    - result.statuscode ShouldEqual 401
+    - result.headers.X-Ovh-Queryid ShouldNotBeEmpty
+    - result.timeseconds ShouldBeLessThan 5
+    - result.headers.Cross-Origin-Opener-Policy ShouldNotBeNil
+
+- name: OSHP - Cross-Origin-Resource-Policy post http testcase
+  steps:
+  - type: http
+    method: POST
+    url: https://eu.api.ovh.com/1.0/auth/logout
+    assertions:
+    - result.statuscode ShouldEqual 401
+    - result.headers.X-Ovh-Queryid ShouldNotBeEmpty
+    - result.timeseconds ShouldBeLessThan 5
+    - result.headers.Cross-Origin-Resource-Policy ShouldNotBeNil
+
+- name: OSHP - Permissions-Policy post http testcase
+  steps:
+  - type: http
+    method: POST
+    url: https://eu.api.ovh.com/1.0/auth/logout
+    assertions:
+    - result.statuscode ShouldEqual 401
+    - result.headers.X-Ovh-Queryid ShouldNotBeEmpty
+    - result.timeseconds ShouldBeLessThan 5
+    - result.headers.Permissions-Policy ShouldNotBeNil
+
+- name: OSHP - Cache-Control post http testcase
+  steps:
+  - type: http
+    method: POST
+    url: https://eu.api.ovh.com/1.0/auth/logout
+    assertions:
+    - result.statuscode ShouldEqual 401
+    - result.headers.X-Ovh-Queryid ShouldNotBeEmpty
+    - result.timeseconds ShouldBeLessThan 5
+    - result.headers.Cache-Control ShouldNotBeNil
+
+- name: OSHP - Feature-Policy post http testcase
+  steps:
+  - type: http
+    method: POST
+    url: https://eu.api.ovh.com/1.0/auth/logout
+    assertions:
+    - result.statuscode ShouldEqual 401
+    - result.headers.X-Ovh-Queryid ShouldNotBeEmpty
+    - result.timeseconds ShouldBeLessThan 5
+    - result.headers.Feature-Policy ShouldBeNil
+
+- name: OSHP - Public-Key-Pins post http testcase
+  steps:
+  - type: http
+    method: POST
+    url: https://eu.api.ovh.com/1.0/auth/logout
+    assertions:
+    - result.statuscode ShouldEqual 401
+    - result.headers.X-Ovh-Queryid ShouldNotBeEmpty
+    - result.timeseconds ShouldBeLessThan 5
+    - result.headers.Public-Key-Pins ShouldBeNil
+
+- name: OSHP - Expect-CT post http testcase
+  steps:
+  - type: http
+    method: POST
+    url: https://eu.api.ovh.com/1.0/auth/logout
+    assertions:
+    - result.statuscode ShouldEqual 401
+    - result.headers.X-Ovh-Queryid ShouldNotBeEmpty
+    - result.timeseconds ShouldBeLessThan 5
+    - result.headers.Expect-CT ShouldBeNil
+
+- name: OSHP - X-XSS-Protection post http testcase
+  steps:
+  - type: http
+    method: POST
+    url: https://eu.api.ovh.com/1.0/auth/logout
+    assertions:
+    - result.statuscode ShouldEqual 401
+    - result.headers.X-Ovh-Queryid ShouldNotBeEmpty
+    - result.timeseconds ShouldBeLessThan 5
+    - result.headers.X-XSS-Protection ShouldBeNil

@@ -1,0 +1,181 @@
+name: HTTP security response headers test suites
+vars:
+  target_site: ''
+  logout_url: ''
+  request_timeout_in_seconds: 20
+testcases:
+  - name: Strict-Transport-Security
+    steps:
+      - type: http
+        method: GET
+        url: '{{.target_site}}'
+        skip_body: true
+        timeout: '{{.request_timeout_in_seconds}}'
+        assertions:
+          - result.statuscode ShouldEqual 200
+          - result.headers.Strict-Transport-Security ShouldNotBeNil
+  - name: X-Frame-Options
+    steps:
+      - type: http
+        method: GET
+        url: '{{.target_site}}'
+        skip_body: true
+        timeout: '{{.request_timeout_in_seconds}}'
+        assertions:
+          - result.statuscode ShouldEqual 200
+          - result.headers.X-Frame-Options ShouldNotBeNil
+  - name: X-Content-Type-Options
+    steps:
+      - type: http
+        method: GET
+        url: '{{.target_site}}'
+        skip_body: true
+        timeout: '{{.request_timeout_in_seconds}}'
+        assertions:
+          - result.statuscode ShouldEqual 200
+          - result.headers.X-Content-Type-Options ShouldNotBeNil
+  - name: Content-Security-Policy
+    steps:
+      - type: http
+        method: GET
+        url: '{{.target_site}}'
+        skip_body: true
+        timeout: '{{.request_timeout_in_seconds}}'
+        assertions:
+          - result.statuscode ShouldEqual 200
+          - result.headers.Content-Security-Policy ShouldNotBeNil
+  - name: X-Permitted-Cross-Domain-Policies
+    steps:
+      - type: http
+        method: GET
+        url: '{{.target_site}}'
+        skip_body: true
+        timeout: '{{.request_timeout_in_seconds}}'
+        assertions:
+          - result.statuscode ShouldEqual 200
+          - result.headers.X-Permitted-Cross-Domain-Policies ShouldNotBeNil
+  - name: Referrer-Policy
+    steps:
+      - type: http
+        method: GET
+        url: '{{.target_site}}'
+        skip_body: true
+        timeout: '{{.request_timeout_in_seconds}}'
+        assertions:
+          - result.statuscode ShouldEqual 200
+          - result.headers.Referrer-Policy ShouldNotBeNil
+  - name: Clear-Site-Data
+    steps:
+      - type: http
+        method: GET
+        url: '{{.target_site}}/{{.logout_url}}'
+        skip_body: true
+        timeout: '{{.request_timeout_in_seconds}}'
+        assertions:
+          - result.statuscode ShouldEqual 200
+          - result.headers.Clear-Site-Data ShouldNotBeNil
+  - name: Cross-Origin-Embedder-Policy
+    steps:
+      - type: http
+        method: GET
+        url: '{{.target_site}}'
+        skip_body: true
+        timeout: '{{.request_timeout_in_seconds}}'
+        assertions:
+          - result.statuscode ShouldEqual 200
+          - result.headers.Cross-Origin-Embedder-Policy ShouldNotBeNil
+  - name: Cross-Origin-Opener-Policy
+    steps:
+      - type: http
+        method: GET
+        url: '{{.target_site}}'
+        skip_body: true
+        timeout: '{{.request_timeout_in_seconds}}'
+        assertions:
+          - result.statuscode ShouldEqual 200
+          - result.headers.Cross-Origin-Opener-Policy ShouldNotBeNil
+  - name: Cross-Origin-Resource-Policy
+    steps:
+      - type: http
+        method: GET
+        url: '{{.target_site}}'
+        skip_body: true
+        timeout: '{{.request_timeout_in_seconds}}'
+        assertions:
+          - result.statuscode ShouldEqual 200
+          - result.headers.Cross-Origin-Resource-Policy ShouldNotBeNil
+  - name: Permissions-Policy
+    steps:
+      - type: http
+        method: GET
+        url: '{{.target_site}}'
+        skip_body: true
+        timeout: '{{.request_timeout_in_seconds}}'
+        assertions:
+          - result.statuscode ShouldEqual 200
+          - result.headers.Permissions-Policy ShouldNotBeNil
+  - name: Cache-Control
+    steps:
+      - type: http
+        method: GET
+        url: '{{.target_site}}'
+        skip_body: true
+        timeout: '{{.request_timeout_in_seconds}}'
+        assertions:
+          - result.statuscode ShouldEqual 200
+          - result.headers.Cache-Control ShouldNotBeNil
+  - name: Feature-Policy
+    steps:
+      - type: http
+        method: GET
+        url: '{{.target_site}}'
+        skip_body: true
+        info: >-
+          This header has now been renamed to Permissions-Policy in the
+          specification.
+        timeout: '{{.request_timeout_in_seconds}}'
+        assertions:
+          - result.statuscode ShouldEqual 200
+          - result.headers.Feature-Policy ShouldBeNil
+  - name: Public-Key-Pins
+    steps:
+      - type: http
+        method: GET
+        url: '{{.target_site}}'
+        skip_body: true
+        info: >-
+          This header has been deprecated by all major browsers and is no longer
+          recommended. Avoid using it, and update existing code if possible!
+        timeout: '{{.request_timeout_in_seconds}}'
+        assertions:
+          - result.statuscode ShouldEqual 200
+          - result.headers.Public-Key-Pins ShouldBeNil
+  - name: Expect-CT
+    steps:
+      - type: http
+        method: GET
+        url: '{{.target_site}}'
+        skip_body: true
+        info: >-
+          This header will likely become obsolete in June 2021. Since May 2018
+          new certificates are expected to support SCTs by default. Certificates
+          before March 2018 were allowed to have a lifetime of 39 months, those
+          will all be expired in June 2021.
+        timeout: '{{.request_timeout_in_seconds}}'
+        assertions:
+          - result.statuscode ShouldEqual 200
+          - result.headers.Expect-CT ShouldBeNil
+  - name: X-XSS-Protection
+    steps:
+      - type: http
+        method: GET
+        url: '{{.target_site}}'
+        skip_body: true
+        info: >-
+          The X-XSS-Protection header has been deprecated by modern browsers and
+          its use can introduce additional security issues on the client side.
+        timeout: '{{.request_timeout_in_seconds}}'
+        assertions:
+          - result.statuscode ShouldEqual 200
+          - result.headers.X-XSS-Protection ShouldBeNil
+
